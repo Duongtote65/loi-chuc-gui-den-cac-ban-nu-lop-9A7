@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Lời Chúc Mừng Đến Các Bạn Nữ Lớp 9A7 🌸✨</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti cho hiệu ứng pháo hoa trái tim -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fbcfe8 0%, #f3e8ff 50%, #fce7f3 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Canvas hiệu ứng hoa & trái tim rơi */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.15);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Glow Effects */
+        .text-glow {
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5), 0 0 25px rgba(217, 70, 239, 0.3);
+        }
+
+        /* Gift Box Hover Effect */
+        .gift-box {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .gift-box:hover {
+            transform: scale(1.08) translateY(-5px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbcfe8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f472b6;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="relative text-gray-800 pb-16">
+
+    <!-- Canvas chứa hiệu ứng cánh hoa và trái tim rơi -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Nút điều khiển Nhạc nền ở góc màn hình -->
+    <div class="fixed top-4 right-4 z-50 flex gap-2">
+        <button id="musicToggle" onclick="toggleMusic()" class="p-3 bg-white/80 hover:bg-white text-pink-600 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center w-12 h-12 border border-pink-200" title="Bật/Tắt Nhạc Nhẹ Nhàng">
+            <span id="musicIcon" class="text-xl">🎵</span>
+        </button>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 pt-10 relative z-20">
+
+        <!-- HEADER BANNER -->
+        <header class="text-center mb-12 floating">
+            <div class="inline-block bg-pink-100 text-pink-600 font-bold px-4 py-1.5 rounded-full text-sm mb-4 border border-pink-300 shadow-sm">
+                💖 Dedicated to Girls of 9A7 💖
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 font-handwriting text-glow py-2">
+                Gửi Lời Chúc Mừng Đến Các Bạn Nữ Lớp 9A7 🌸✨
+            </h1>
+            <p class="mt-2 text-gray-600 font-medium">Những bông hoa xinh đẹp, rạng rỡ và tỏa sáng nhất!</p>
+        </header>
+
+        <!-- NỘI DUNG LỜI CHÚC TỔNG QUÁT -->
+        <section class="glass-card rounded-3xl p-6 md:p-8 mb-10 text-center relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-pink-200/50 rounded-full blur-2xl"></div>
+            <div class="absolute -left-8 -top-8 w-32 h-32 bg-purple-200/50 rounded-full blur-2xl"></div>
+
+            <h2 class="text-2xl font-bold text-pink-600 mb-4 flex items-center justify-center gap-2">
+                <span>🌸</span> Lời Chúc Yêu Thương <span>✨</span>
+            </h2>
+            <p class="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                Thân gửi các cô gái xinh đẹp của lớp <span class="font-bold text-pink-500">9A7</span>! 💕<br>
+                Chúc các bạn luôn rạng rỡ, tràn ngập niềm vui, xinh đẹp và tự tin theo cách riêng của mình. Cảm ơn các bạn đã luôn mang lại nụ cười, sự ấm áp và là những mảnh ghép rực rỡ không thể thiếu trong thanh xuân lớp chúng ta.
+            </p>
+            <p class="text-pink-600 font-bold text-lg md:text-xl">
+                🚀 Chúc các bạn nữ 9A7 đại thắng trong Kỳ thi Vào 10 sắp tới! Đạt nguyện vọng 1 xuất sắc nhé! 🎓💪
+            </p>
+        </section>
+
+        <!-- ĐỒNG HỒ ĐẾM NGƯỢC THI VÀO 10 -->
+        <section class="glass-card rounded-2xl p-6 mb-10 text-center">
+            <h3 class="text-lg font-bold text-purple-600 mb-3 flex items-center justify-center gap-2">
+                <span>⏰</span> Đếm ngược đến Kỳ thi Tuyển sinh Lớp 10 (Tháng 6/2027):
+            </h3>
+            <div class="grid grid-cols-4 gap-2 md:gap-4 max-w-md mx-auto text-pink-600">
+                <div class="bg-white/80 p-3 rounded-xl shadow-sm border border-pink-100">
+                    <span id="days" class="text-2xl md:text-3xl font-extrabold block">00</span>
+                    <span class="text-xs text-gray-500 font-medium">Ngày</span>
+                </div>
+                <div class="bg-white/80 p-3 rounded-xl shadow-sm border border-pink-100">
+                    <span id="hours" class="text-2xl md:text-3xl font-extrabold block">00</span>
+                    <span class="text-xs text-gray-500 font-medium">Giờ</span>
+                </div>
+                <div class="bg-white/80 p-3 rounded-xl shadow-sm border border-pink-100">
+                    <span id="minutes" class="text-2xl md:text-3xl font-extrabold block">00</span>
+                    <span class="text-xs text-gray-500 font-medium">Phút</span>
+                </div>
+                <div class="bg-white/80 p-3 rounded-xl shadow-sm border border-pink-100">
+                    <span id="seconds" class="text-2xl md:text-3xl font-extrabold block">00</span>
+                    <span class="text-xs text-gray-500 font-medium">Giây</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Cố lên nhé các cô gái 9A7, chiến thắng đang chờ đợi phía trước!</p>
+        </section>
+
+        <!-- HỘP QUÀ BÍ MẬT / THIỆP MAY MẮN -->
+        <section class="mb-12">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center justify-center gap-2">
+                    🎁 Mở Quà May Mắn 9A7 ✨
+                </h2>
+                <p class="text-sm text-gray-600">Hãy bấm chọn một hộp quà để nhận thông điệp ý nghĩa riêng dành cho bạn!</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Gift 1 -->
+                <div onclick="openGift(1)" class="gift-box glass-card p-6 rounded-2xl text-center cursor-pointer hover:shadow-pink-300/50 border border-pink-200">
+                    <div class="text-5xl mb-2">🎁</div>
+                    <span class="font-bold text-pink-600 text-sm">Hộp Quà #1</span>
+                </div>
+                <!-- Gift 2 -->
+                <div onclick="openGift(2)" class="gift-box glass-card p-6 rounded-2xl text-center cursor-pointer hover:shadow-pink-300/50 border border-purple-200">
+                    <div class="text-5xl mb-2">🎀</div>
+                    <span class="font-bold text-purple-600 text-sm">Hộp Quà #2</span>
+                </div>
+                <!-- Gift 3 -->
+                <div onclick="openGift(3)" class="gift-box glass-card p-6 rounded-2xl text-center cursor-pointer hover:shadow-pink-300/50 border border-pink-200">
+                    <div class="text-5xl mb-2">💌</div>
+                    <span class="font-bold text-pink-600 text-sm">Hộp Quà #3</span>
+                </div>
+                <!-- Gift 4 -->
+                <div onclick="openGift(4)" class="gift-box glass-card p-6 rounded-2xl text-center cursor-pointer hover:shadow-pink-300/50 border border-purple-200">
+                    <div class="text-5xl mb-2">💖</div>
+                    <span class="font-bold text-purple-600 text-sm">Hộp Quà #4</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- NÚT INTERACTIVE BÙM PHÁO HOA & THẢ TIM -->
+        <section class="text-center py-6">
+            <button onclick="triggerFullHearts()" class="px-8 py-4 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-pink-400/50 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 mx-auto border-2 border-white/50">
+                <span>Thả Tim Ngập Tràn ❤️✨</span>
+            </button>
+            <p class="text-xs text-gray-500 mt-2">Bấm vào đây để thả vô số trái tim và pháo hoa rực rỡ!</p>
+        </section>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Made with ❤️ for Class 9A7 • Mãi Mãi Bán Kết Thanh Xuân</p>
+        </footer>
+    </div>
+
+    <!-- MODAL HIỂN THỊ QUÀ BÍ MẬT -->
+    <div id="giftModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card bg-white/95 max-w-md w-full p-6 rounded-3xl text-center transform scale-90 transition-transform duration-300 id-modal-content border-2 border-pink-300 shadow-2xl">
+            <div id="modalEmoji" class="text-6xl mb-4 animate-bounce">🎁</div>
+            <h3 id="modalTitle" class="text-2xl font-bold text-pink-600 mb-2">Thông Điệp May Mắn</h3>
+            <p id="modalMessage" class="text-gray-700 text-base mb-6 leading-relaxed">...</p>
+            <button onclick="closeModal()" class="px-6 py-2.5 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full shadow-md hover:opacity-90 transition-opacity">
+                Nhận Lời Chúc ✨
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /* --- 1. HIỆU ỨNG CANVAS HOA ĐÀO / TRÁI TIM RƠI --- */
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const particleTypes = ['🌸', '💖', '✨', '💕', '🌺', '🌷'];
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = -20;
+                this.size = Math.random() * 14 + 10;
+                this.speedY = Math.random() * 1.5 + 0.8;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.symbol = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.rotation = Math.random() * 360;
+                this.spin = Math.random() * 2 - 1;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.spin;
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.symbol, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        // Khởi tạo 35 hạt hiệu ứng rơi mềm mại
+        for (let i = 0; i < 35; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        /* --- 2. HỘP QUÀ BÍ MẬT & MODAL --- */
+        const giftData = {
+            1: {
+                emoji: '🌸',
+                title: 'Quẻ May Mắn: Học Tới Đâu Trúng Tới Đó!',
+                msg: 'Chúc bạn luôn xinh đẹp tự nhiên và rạng rỡ! Kỳ thi tuyển sinh Lớp 10 sắp tới chỉ là chuyện nhỏ, chúc bạn đạt trọn vẹn điểm tối đa!'
+            },
+            2: {
+                emoji: '💖',
+                title: 'Thông Điệp Ngọt Ngào',
+                msg: 'Bạn là một phần vô cùng đặc biệt của 9A7. Chúc bạn luôn giữ nụ cười tươi trên môi, luôn hạnh phúc và tỏa sáng theo cách riêng!'
+            },
+            3: {
+                emoji: '👑',
+                title: 'Nữ Hoàng Nguyện Vọng 1',
+                msg: 'Chúc bạn nữ 9A7 đỗ NV1 với điểm số xuất sắc, bước vào trường Cấp 3 mơ ước và luôn gặp thật nhiều may mắn!'
+            },
+            4: {
+                emoji: '✨',
+                title: 'Ngôi Sao Tỏa Sáng',
+                msg: 'Hãy luôn tự tin vào bản thân mình nhé! Chúc bạn luôn mạnh mẽ, tự tin và chinh phục thành công mọi mục tiêu phía trước!'
+            }
+        };
+
+        function openGift(id) {
+            const gift = giftData[id];
+            document.getElementById('modalEmoji').innerText = gift.emoji;
+            document.getElementById('modalTitle').innerText = gift.title;
+            document.getElementById('modalMessage').innerText = gift.msg;
+
+            const modal = document.getElementById('giftModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('.id-modal-content').classList.remove('scale-90');
+            modal.querySelector('.id-modal-content').classList.add('scale-100');
+
+            // Hiệu ứng pháo hoa nhẹ khi mở quà
+            confetti({
+                particleCount: 60,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('giftModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('.id-modal-content').classList.remove('scale-100');
+            modal.querySelector('.id-modal-content').classList.add('scale-90');
+        }
+
+        /* --- 3. ĐỒNG HỒ ĐẾM NGƯỢC TỚI THI VÀO 10 (THÁNG 6/2027) --- */
+        const targetDate = new Date("June 1, 2027 08:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* --- 4. HIỆU ỨNG BẮN PHÁO HOA & THẢ TIM NGẬP TRÀN --- */
+        function triggerFullHearts() {
+            // Pháo hoa góc trái
+            confetti({
+                particleCount: 80,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+            // Pháo hoa góc phải
+            confetti({
+                particleCount: 80,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+
+            // Trái tim bùng nổ ở trung tâm
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 100,
+                    origin: { y: 0.5 },
+                    colors: ['#f472b6', '#ec4899', '#d946ef', '#a855f7']
+                });
+            }, 250);
+        }
+
+        /* --- 5. ÂM NHẠC NỀN DỄ THƯƠNG (Web Audio API Synthesizer) --- */
+        let audioCtx = null;
+        let isPlaying = false;
+        let timer = null;
+
+        const melody = [
+            261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25,
+            440.00, 392.00, 349.23, 329.63, 293.66
+        ];
+
+        function playCuteMelody() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            let index = 0;
+            timer = setInterval(() => {
+                if (!isPlaying) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(melody[index % melody.length], audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+                
+                index++;
+            }, 300);
+        }
+
+        function toggleMusic() {
+            const icon = document.getElementById('musicIcon');
+            if (!isPlaying) {
+                isPlaying = true;
+                icon.innerText = '🔊';
+                playCuteMelody();
+            } else {
+                isPlaying = false;
+                icon.innerText = '🎵';
+                if (timer) clearInterval(timer);
+            }
+        }
+    </script>
+</body>
+</html>
